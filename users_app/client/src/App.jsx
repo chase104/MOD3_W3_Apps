@@ -40,7 +40,7 @@ function App() {
     <>
     {/* if we are still checking, show nothing. */}
     {/* then, check if the answer */}
-    {!checkedToken ? <></> : user ? <RestOfApp /> : <Auth setUser={setUser} />}
+    {!checkedToken ? <></> : user ? <RestOfApp setUser={setUser} /> : <Auth setUser={setUser} />}
 
     </>
 

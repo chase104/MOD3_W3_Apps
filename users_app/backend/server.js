@@ -75,6 +75,19 @@ app.post('/login', async (req, res) => {
     })
 })
 
+
+app.get("/posts", (req, res) => {
+    
+    let token = req.header('Authorization');
+    console.log(token);
+    if (!token) return res.status(400).send("you're not logged in!")
+
+
+
+
+    res.send({message: "your posts are here", posts: ["Becky is sooooo cute"]})
+})
+
 // END ROUTES //
 
 app.listen(PORT, () => {
