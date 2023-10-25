@@ -5,9 +5,10 @@ const helmet = require('helmet'); // adds a bunch of standard security to server
 require('dotenv').config();
 require('./config/db.js');
 const User = require('./models/User.js');
-const PORT = 3000;
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const path = require('path')
+const PORT = 3000;
 
 const app = express();
 
@@ -22,6 +23,8 @@ app.use(helmet());
 // END MIDDLEWARE //
 
 // START ROUTES //
+
+app.use(express.static(path.join(__dirname, "./dist")))
 
 app.get('/check_token', (req, res) => {
     // get token from headers, 
