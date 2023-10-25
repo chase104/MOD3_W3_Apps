@@ -57,11 +57,13 @@ app.post('/login', async (req, res) => {
     let dbUser = await User.findOne({email: req.body.email});
     // compare
     // 2. compare entered password with pass of this user
+    if (!dbUser) return res.status(400).send("email or password incorrect");
+
     bcrypt.compare(req.body.password, dbUser.password, (err, isMatch) => { 
         if (isMatch) {
             // let the frontend know that the login was successful!
             // dont want password
-            dbUser.password = ""
+            dbUser.password = "";
             // now just email and username
             const token = jwt.sign({dbUser}, process.env.TOKEN_SECRET, { expiresIn: "1h" });
             res.status(200).send({token, dbUser});
