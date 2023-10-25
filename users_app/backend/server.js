@@ -90,7 +90,9 @@ app.get("/posts", (req, res) => {
 
     res.send({message: "your posts are here", posts: ["Becky is sooooo cute"]})
 })
-
+app.get('/*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+  });
 // END ROUTES //
 
 app.listen(PORT, () => {
